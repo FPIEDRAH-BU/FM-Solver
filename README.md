@@ -11,7 +11,7 @@ screen = feature_model.Feature(identifier=4, name="Screen")
 media = feature_model.Feature(identifier=5, name="Media")
 basic = feature_model.Feature(identifier=6, name="Basic")
 colour = feature_model.Feature(identifier=7, name="Colour")
-high_resolution_model = feature.Feature(identifier=8, name="High Resolution")
+high_resolution = feature_model.Feature(identifier=8, name="High Resolution")
 camera = feature_model.Feature(identifier=9, name="Camera")
 mp3 = feature_model.Feature(identifier=10, name="MP3")
 

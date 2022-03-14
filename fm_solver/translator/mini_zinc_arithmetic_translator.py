@@ -2,7 +2,7 @@ import functools
 import typing
 
 from fm_solver import feature_model
-from fm_solver.translators import translator
+from fm_solver.translator import translator
 
 
 class MiniZincArithmeticTranslator(translator.Translator):
@@ -68,15 +68,16 @@ class MiniZincArithmeticTranslator(translator.Translator):
             feature_model.And, feature_model.Or, feature_model.Xor, feature_model.Range
         ],
     ) -> str:
+        destination_sum = " + ".join(
+            [
+                f"feature_{restriction.identifier}"
+                for restriction in restriction.destination
+            ]
+        )
+
         return (
-            f"feature_{restriction.source.identifier} * {restriction.cardinality.lower_bound} <= "
-            + " + ".join(
-                [
-                    f"feature_{restriction.identifier}"
-                    for restriction in restriction.destination
-                ]
-            )
-            + f" <= feature_{restriction.source.identifier} * {restriction.cardinality.upper_bound}"
+            f"constraint (feature_{restriction.source.identifier} * {restriction.cardinality.lower_bound} <= {destination_sum})\n"
+            + f"constraint{destination_sum} <= feature_{restriction.source.identifier} * {restriction.cardinality.upper_bound})"
         )
 
     @translate_restriction.register
