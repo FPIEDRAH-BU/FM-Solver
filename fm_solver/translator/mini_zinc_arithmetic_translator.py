@@ -92,5 +92,6 @@ class MiniZincArithmeticTranslator(translator.Translator):
     def _(self, restriction: feature_model.Xor) -> str:
         return self.build_cardinality_restriction(restriction)
 
+    @translate_restriction.register
     def _(self, restriction: feature_model.Range) -> str:
         return self.build_cardinality_restriction(restriction)
