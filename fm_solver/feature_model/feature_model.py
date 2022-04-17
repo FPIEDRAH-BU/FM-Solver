@@ -15,11 +15,15 @@ class FeatureModel:
     def get_feature(self, identifier: int) -> typing.Optional[feature.Feature]:
         return self.features.get(identifier)
 
-    def add_feature(self, feature: feature) -> None:
+    def add_feature(self, feature: feature.Feature) -> None:
         if feature.identifier in self.features:
             return ValueError(f"Feature with id: {feature.identifier} already exist.")
 
         self.features[feature.identifier] = feature
+
+    def add_features(self, features: typing.List[feature.Feature]) -> None:
+        for feature in features:
+            self.add_feature(feature)
 
     def change_feature_selection(
         self, feature_id: int, selection: feature.Selection
@@ -31,6 +35,12 @@ class FeatureModel:
 
     def add_restriction(self, restriction: restriction.Restriction) -> None:
         self.restrictions.append(restriction)
+
+    def add_restrictions(
+        self, restrictions: typing.List[restriction.Restriction]
+    ) -> None:
+        for restriction in restrictions:
+            self.add_restriction(restriction)
 
     def get_restrictions_with_source(
         self, feature: feature.Feature,
