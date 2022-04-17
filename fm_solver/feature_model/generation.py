@@ -134,7 +134,6 @@ def random_feature_model(
 
         childless.extend(features)
 
-    print(len(model.restrictions))
     restriction_counts = _cross_tree_restriction_amounts(
         restriction_amount=cross_tree_restriction_amount,
         requires_weight=requires_weight,
@@ -145,6 +144,5 @@ def random_feature_model(
     )
 
     model.add_restrictions(restrictions)
-    print(len(model.restrictions))
 
     return model
