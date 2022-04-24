@@ -83,7 +83,7 @@ def _build_cross_tree_restrictions(
 
     for restriction_class, amount in cross_tree_restriction_count.items():
         for _ in range(amount):
-            source, destination = random.sample(model.features.items(), 2)
+            source, destination = random.sample(list(model.features.values()), 2)
             restrictions.append(
                 restriction_class(source=source, destination=destination)
             )

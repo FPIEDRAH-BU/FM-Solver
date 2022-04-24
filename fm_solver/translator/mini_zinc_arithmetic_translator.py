@@ -32,7 +32,7 @@ class MiniZincArithmeticTranslator(translator.Translator):
 
     @translate_restriction.register
     def _(self, restriction: feature_model.Root) -> str:
-        return f"constraint (feature_{restriction.source.identifier} == 1);"
+        return f"constraint (feature_{restriction.source.identifier} = 1);"
 
     @translate_restriction.register
     def _(self, restriction: feature_model.Mandatory) -> str:
